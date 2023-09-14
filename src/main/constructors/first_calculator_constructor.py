@@ -18,12 +18,12 @@ class FirstCalculatorConstructor:
             if value == 0:
                 return
 
-            result = self.first_calculator_controller.calculate(value)
+            result, status = self.first_calculator_controller.calculate(value)
 
             result_dict = {
                 "calculator": "Primeira Calculadora",
                 "inputs": [value],
-                "status": "Sucesso",
+                "status": status,
                 "result": result
             }
 

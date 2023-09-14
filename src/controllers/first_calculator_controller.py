@@ -17,4 +17,6 @@ class FirstCalculator:
         result = self.__calculation_manager.average([part1, part2, part3])
         result = round(result, 1)
 
-        return result
+        status = "Sucesso"
+
+        return result, status
