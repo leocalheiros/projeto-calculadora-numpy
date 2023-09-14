@@ -10,6 +10,10 @@ class ThirdCalculator:
         std_deviation = self.__calculation_manager.std_deviation(values)
 
         if variance > std_deviation:
-            return "Sucesso!"
+            status = "Sucesso"
+            result = f"Variance: {variance}, Std Deviation: {std_deviation}"
+        else:
+            status = "Falha"
+            result = None
 
-        return "Falha!"
+        return status, result
