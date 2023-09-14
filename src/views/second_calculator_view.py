@@ -1,7 +1,7 @@
 class SecondCalculatorView:
     def display_menu(self):
         print("\nSegunda Calculadora:")
-        print("Digite os valores separados por vírgula (Deixe o espaço em branco pra voltar):")
+        print("Digite os valores separados por vírgula (Digite 0 pra voltar):")
 
     def get_user_input(self):
         try:
