@@ -10,6 +10,11 @@ class SecondCalculator:
 
         std_deviation = self.__calculation_manager.std_deviation(powered_values)
 
-        result = 1 / std_deviation
+        if std_deviation == 0:
+            result = None
+            status = "Falha"
+        else:
+            result = 1 / std_deviation
+            status = "Sucesso"
 
-        return result
+        return result, status
