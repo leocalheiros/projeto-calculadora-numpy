@@ -12,4 +12,4 @@ class CalculationManager:
         return self.__np.variance(values)
 
     def std_deviation(self, values):
-        return self.__np.std_deviation(values)
+        return self.__np.std(values)
