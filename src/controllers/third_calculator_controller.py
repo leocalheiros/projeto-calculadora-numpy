@@ -1,0 +1,15 @@
+from src.drivers.calculation_manager import CalculationManager
+
+
+class ThirdCalculator:
+    def __init__(self, calculation_manager: CalculationManager):
+        self.__calculation_manager = calculation_manager
+
+    def calculate(self, values):
+        variance = self.__calculation_manager.variance(values)
+        std_deviation = self.__calculation_manager.std_deviation(values)
+
+        if variance > std_deviation:
+            return "Sucesso!"
+
+        return "Falha!"
