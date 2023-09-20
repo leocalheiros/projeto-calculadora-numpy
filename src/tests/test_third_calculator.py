@@ -34,7 +34,6 @@ def test_third_calculator_expected_result_falha():
 
     result, _ = third_calculator.calculate(input_values)
 
-    # Substitua por um valor que você acha apropriado para um teste de falha
     expected_result = 'Falha'
 
     assert result == expected_result
