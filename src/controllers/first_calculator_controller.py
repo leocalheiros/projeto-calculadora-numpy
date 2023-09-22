@@ -1,7 +1,8 @@
 from src.drivers.calculation_manager import CalculationManager
+from .interface.calculator_interface import ICalculator
 
 
-class FirstCalculator:
+class FirstCalculator(ICalculator):
     def __init__(self, calculation_manager: CalculationManager):
         self.__calculation_manager = calculation_manager
 
