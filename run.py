@@ -1,10 +1,4 @@
-from src.main.process_handler import ProcessHandler
-
-
-def main():
-    process_handler = ProcessHandler()
-    process_handler.start()
-
+from src.main.server.server import app
 
 if __name__ == "__main__":
-    main()
+    app.run()
