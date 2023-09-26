@@ -1,17 +1,20 @@
 import pytest
-from src.controllers.first_calculator_controller import FirstCalculator
-from src.drivers.calculation_manager import CalculationManager
+from flask import json
+from src.main.server.server import app
 
 
-def test_first_calculator_controller_success():
-    calculation_manager = CalculationManager()
+@pytest.fixture
+def client():
+    return app.test_client()
 
-    first_calculator = FirstCalculator(calculation_manager)
 
-    input_value = 12
+def test_first_calculator_success(client):
+    values = [10, 20, 30]
 
-    result = first_calculator.calculate(input_value)
+    data = json.dumps({"values": values})
 
-    expected_result = 3.2
+    response = client.post('/calculate/first', data=data,
+                           content_type='application/json')
 
-    assert result == pytest.approx(expected_result)
+    assert response.status_code == 200
+    assert b'Sucesso' in response.data

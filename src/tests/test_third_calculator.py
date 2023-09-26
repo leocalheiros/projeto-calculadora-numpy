@@ -1,39 +1,30 @@
-from src.controllers.third_calculator_controller import ThirdCalculator
-from src.drivers.calculation_manager import CalculationManager
+import pytest
+from flask import json
+from src.main.server.server import app
 
 
-def test_third_calculator_is_not_none():
-    calculation_manager = CalculationManager()
-    third_calculator = ThirdCalculator(calculation_manager)
-
-    input_values = [1, 2, 3, 4, 5]
-
-    result = third_calculator.calculate(input_values)
-
-    assert result is not None
+@pytest.fixture
+def client():
+    return app.test_client()
 
 
-def test_third_calculator_expected_result_sucesso():
-    calculation_manager = CalculationManager()
-    third_calculator = ThirdCalculator(calculation_manager)
+def test_second_calculator_success(client):
+    values = [10, 20, 30]
 
-    input_values = [1, 2, 3, 4, 5]
+    data = json.dumps({"values": values})
 
-    result, _ = third_calculator.calculate(input_values)
+    response = client.post('/calculate/third', data=data, content_type='application/json')
 
-    expected_result = 'Sucesso'
-
-    assert result == expected_result
+    assert response.status_code == 200
+    assert b'Sucesso' in response.data
 
 
-def test_third_calculator_expected_result_falha():
-    calculation_manager = CalculationManager()
-    third_calculator = ThirdCalculator(calculation_manager)
+def test_second_calculator_fail(client):
+    values = [1, 1, 1]
 
-    input_values = [1, 2, 3]
+    data = json.dumps({"values": values})
 
-    result, _ = third_calculator.calculate(input_values)
+    response = client.post('/calculate/third', data=data, content_type='application/json')
 
-    expected_result = 'Falha'
-
-    assert result == expected_result
+    assert response.status_code == 200
+    assert b'Falha' in response.data
